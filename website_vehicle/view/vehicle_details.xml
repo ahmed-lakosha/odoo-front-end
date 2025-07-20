@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<!-- Website Vehicle Details -->
+	<template id="website_vehicle_template" name="Website Vehicle" track="1">
+		<t t-call="website.layout">
+			<div class="website_vehicle">
+				<article class="" id="o_vehicle_details_main">
+					<section class="s_website_vehicle_banner">
+						<t t-if="vehicle" t-call="website.record_cover">
+							<t t-set="_record" t-value="vehicle"/>
+							<t t-set="use_filters" t-value="True"/>
+							<t t-set="use_text_align" t-value="True"/>
+							<t t-set="additionnal_classes"
+									t-value="'o_vehicle_post_page_cover o_record_has_cover cover_auto'"/>
+							<div class="container position-relative h-100 d-flex flex-column justify-content-around py-5 text-center"
+									t-cache="_record">
+								<div class="o_vehicle_title py-4 mt-5">
+									<span t-att-title="vehicle.name" class="text-white text-decoration-none pt-5">
+										<h2 class="pt-4 mb-0 mt-5"
+												t-field="vehicle.type_id.name"
+												id="o_vehicle_type_name"
+												placeholder="Blog Title"/>
+										<h1 class="py-4 text-primary fw-normal"
+												t-field="vehicle.name"
+												id="o_vehicle_name"
+												placeholder="Blog Title"/>
+									</span>
+								</div>
+								<div id="o_vehicle_details_main_nav"/>
+							</div>
+						</t>
+					</section>
+					<section class="pt-3 pb-5">
+						<div class="container">
+							<div class="row">
+								<div class="col-lg-8">
+									<img t-attf-src="/web/image/website.vehicle/{{vehicle.id}}/image_1024"
+											class="img img-fluid w-100"
+											t-att-alt="vehicle.name"
+											loading="lazy"/>
+								</div>
+								<div class="col-lg-4 text-muted">
+									<p class="" t-out="vehicle.name" t-ignore="true"/>
+									<p class="mb-5" t-field="vehicle.description"/>
+									<a t-attf-href="/web/content/website.vehicle/#{vehicle.id}/datasheet?download=true"
+											class="btn btn-primary w-100"
+											download="">DATASHEET
+									</a>
+								</div>
+
+							</div>
+						</div>
+					</section>
+					<section class="py-5" id="o_vehicle_website_description">
+						<div class="container">
+							<h3 class="text-primary d-flex align-items-center text-uppercase mb-4">
+								<svg xmlns="http://www.w3.org/2000/svg"
+										class="me-3"
+										width="45"
+										height="45"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="var(--primary)"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round">
+									<path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+									<path d="M14 3v4a1 1 0 0 0 1 1h4"/>
+									<path d="M12 21h-5a2 2 0 0 1-2-2v-14a2 2 0 0 1 2-2h7l5 5v4.5"/>
+									<path d="M16.5 17.5m-2.5 0a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0 -5 0"/>
+									<path d="M18.5 19.5l2.5 2.5"/>
+								</svg>
+								Specification
+							</h3>
+							<div t-field="vehicle.website_description"/>
+
+						</div>
+					</section>
+					<section id="o_vehicle_media">
+						<div class="py-5" t-if="vehicle.exterior_image_ids">
+							<div class="container">
+								<h3 class="text-primary d-flex align-items-center text-uppercase mb-4">
+									<svg xmlns="http://www.w3.org/2000/svg" class="me-3" width="45" height="45"
+											viewBox="0 0 512 512" fill="none" stroke="var(--primary)"
+											stroke-linecap="round" stroke-linejoin="round" stroke-width="32">
+										<rect x="80" y="112" width="352" height="192" rx="32" ry="32"/>
+										<rect x="80" y="304" width="352" height="128" rx="32" ry="32"/>
+										<path d="M400 112H112a32 32 0 0 0-32 32v0a32 32 0 0 0 32-32H400a32 32 0 0 0 32 32v0a32 32 0 0 0-32-32z"/>
+										<path d="M144 432v22a10 10 0 0 1-10 10H106a10 10 0 0 1-10-10v-22"/>
+										<path d="M416 432v22a10 10 0 0 1-10 10H378a10 10 0 0 1-10-10v-22"/>
+										<circle cx="368" cy="368" r="16"/>
+										<circle cx="144" cy="368" r="16"/>
+										<line x1="256" y1="112" x2="256" y2="304"/>
+										<line x1="80" y1="80" x2="80" y2="368"/>
+										<line x1="432" y1="80" x2="432" y2="368"/>
+									</svg>
+									Exterior
+								</h3>
+								<div class="d-flex gap-md-3 gap-2 overflow-x-auto">
+									<t t-foreach="vehicle.exterior_image_ids" t-as="exterior_image">
+										<div t-field="exterior_image.image_1024"
+												name="o_img_with_max_suggested_width"
+												style="min-width: 200px"
+												class="oe_unmovable"
+												t-options="{
+                                                'widget': 'image',
+                                                'preview_image': 'image_1024',
+                                                'class': 'oe_unmovable',
+                                                'alt-field': 'name',
+                                            }"
+										/>
+									</t>
+								</div>
+
+							</div>
+						</div>
+					</section>
+				</article>
+			</div>
+		</t>
+	</template>
+
+	<!-- (Option) Share Links Display -->
+	<template id="opt_website_vehicle_share_links_display" name="Share Links"
+			inherit_id="website_vehicle.website_vehicle_template" active="True" priority="2">
+		<xpath expr="//article[@id='o_vehicle_details_main']" position="inside">
+			<section class="py-5">
+				<div class="container">
+					<h6 class="text-uppercase pb-3 mb-4 border-bottom fw-bold">Share this vehicle</h6>
+					<div class="o_vehicle_social_links d-flex flex-wrap mx-n1 o_not_editable">
+						<t t-set="classes" t-translation="off">mx-3 d-flex fs-4 align-items-center
+							justify-content-center text-decoration-none
+						</t>
+						<a href="#"
+								aria-label="Facebook"
+								title="Share on Facebook"
+								t-attf-class="o_facebook #{classes}">
+							<i class="fa fa-facebook-square text-facebook"/>
+						</a>
+						<a href="#" aria-label="Twitter" title="Share on Twitter" t-attf-class="o_twitter #{classes}">
+							<i class="fa fa-twitter text-twitter" aria-label="Twitter" title="Twitter"/>
+						</a>
+						<a href="#"
+								aria-label="LinkedIn"
+								title="Share on LinkedIn"
+								t-attf-class="o_linkedin #{classes}">
+							<i class="fa fa-linkedin text-linkedin" aria-label="LinkedIn" title="LinkedIn"/>
+						</a>
+					</div>
+				</div>
+			</section>
+
+		</xpath>
+	</template>
+
+	<!-- (Option) Breadcrumbs Display -->
+	<template id="opt_website_vehicle_breadcrumb"
+			inherit_id="website_vehicle.website_vehicle_template" active="True" priority="2">
+		<xpath expr="//div[@id='o_vehicle_details_main_nav']" position="inside">
+			<nav aria-label="breadcrumb" style="--breadcrumb-divider: '>';--secondary-color: #fff;"
+					t-attf-class="breadcrumb justify-content-center border-top flex-nowrap border-2 border-white py-lg-4 css_editable_mode_hidden #{additionnal_classes or ''}">
+				<li class="breadcrumb-item">
+					<a class="text-white" href="/">Home</a>
+				</li>
+				<li class="breadcrumb-item">
+					<a class="text-white" href="/vehicles">Vehicles</a>
+				</li>
+				<li class="breadcrumb-item text-truncate fw-bold active">
+					<span t-out="vehicle.name"/>
+				</li>
+			</nav>
+		</xpath>
+	</template>
+
+	<!-- (Option) Breadcrumbs Display -->
+	<template id="opt_website_vehicle_read_next"
+			inherit_id="website_vehicle.website_vehicle_template" active="True" priority="2">
+		<xpath expr="//article[@id='o_vehicle_details_main']" position="inside">
+			<section class="pb-5 text-center">
+				<a t-attf-href="/vehicle/#{next_vehicle_slug}" t-if="next_vehicle"
+						t-out="next_vehicle.name" class="btn btn-primary btn-lg" t-att-data-vehicle-id="next_vehicle.id"
+						placeholder="Next Vehicle"/>
+			</section>
+		</xpath>
+	</template>
+
+</odoo>

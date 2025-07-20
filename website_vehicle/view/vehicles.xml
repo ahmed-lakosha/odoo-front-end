@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="vehicle_types_page" name="Vehicles by Type">
+        <t t-call="website.layout">
+            <section class="s_website_vehicle_banner">
+                <t t-set="page_is_home" t-value="True"/>
+                <div data-name="Cover" class="o_record_cover_container d-flex flex-column h-100 o_colored_level o_cc o_cc3 o_cc   o_vehicle_post_page_cover o_record_has_cover cover_auto">
+                    <div style="background-image: url(/website_vehicle/static/src/img/main_page_bg.webp);" class="o_record_cover_component o_record_cover_image "/>
+                    <div class="o_record_cover_component o_record_cover_filter oe_black" style="opacity: 0.2;"/>
+
+                    <div class="container position-relative h-100 d-flex flex-column justify-content-around py-5 text-center">
+                        <div class="o_vehicle_title pt-4 mt-5">
+                            <span class="text-white text-decoration-none pt-5 mt-5">
+                                <h1 class="pt-4 text-white fw-normal mt-5">Vehicles
+                                </h1>
+                            </span>
+                        </div>
+                        <div id="o_website_vehicle_main_nav">
+                            <nav aria-label="breadcrumb" style="--breadcrumb-divider: '>';--secondary-color: #fff;"
+                                 class="breadcrumb justify-content-center flex-nowrap mb-5 pb-lg-5 css_editable_mode_hidden o_vehicle_post_page_cover o_record_has_cover cover_auto">
+                                <li class="breadcrumb-item">
+                                    <a class="text-white" href="/">Home</a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <span class="breadcrumb-item text-truncate fw-bold active">Vehicles</span>
+                                </li>
+                            </nav>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+            <div class="container my-5">
+
+                <!-- Nav pills -->
+                <ul class="nav nav-pills mb-4 justify-content-center gap-3" id="vehicles-tab" role="tablist" t-if="vehicle_ids">
+                    <!-- All tab -->
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link border border-primary active"
+                                id="vehicles-all-tab"
+                                data-bs-toggle="pill"
+                                data-bs-target="#vehicles-all"
+                                type="button"
+                                role="tab"
+                                aria-controls="vehicles-all"
+                                aria-selected="true">
+                            All
+                        </button>
+                    </li>
+                    <!-- One tab per type that actually has vehicles -->
+                    <t t-foreach="type_ids" t-as="type">
+                        <t t-if="type.vehicle_ids">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link border border-primary"
+                                        t-attf-id="vehicles-type-{{type.id}}-tab"
+                                        data-bs-toggle="pill"
+                                        t-attf-data-bs-target="#vehicles-type-{{type.id}}"
+                                        type="button"
+                                        role="tab"
+                                        t-attf-aria-controls="vehicles-type-{{type.id}}"
+                                        aria-selected="false">
+                                    <t t-esc="type.name"/>
+                                </button>
+                            </li>
+                        </t>
+                    </t>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content" id="vehicles-tabContent">
+                    <!-- All vehicles panel -->
+                    <div class="tab-pane fade show active"
+                         id="vehicles-all"
+                         role="tabpanel"
+                         aria-labelledby="vehicles-all-tab">
+                        <div class="row" t-if="vehicle_ids">
+                            <t t-foreach="vehicle_ids" t-as="v">
+                                <div class="col-md-6 mb-4">
+                                    <t t-call="website_vehicle.vehicle_item"/>
+                                </div>
+                            </t>
+                        </div>
+                        <div class="text-center" t-else="">
+                            <h2 class="text-muted">No Vehicles Is Found.</h2>
+                        </div>
+                    </div>
+
+                    <!-- One panel per type with vehicles -->
+                    <t t-foreach="type_ids" t-as="type">
+                        <t t-if="type.vehicle_ids">
+                            <div class="tab-pane fade"
+                                 t-attf-id="vehicles-type-{{type.id}}"
+                                 role="tabpanel"
+                                 t-attf-aria-labelledby="vehicles-type-{{type.id}}-tab">
+                                <div class="row">
+                                    <t t-foreach="type.vehicle_ids" t-as="v">
+                                        <div class="col-md-6 mb-4">
+                                            <t t-call="website_vehicle.vehicle_item"/>
+                                        </div>
+                                    </t>
+                                </div>
+                            </div>
+                        </t>
+                    </t>
+                </div>
+
+            </div>
+        </t>
+    </template>
+    <template id="vehicle_item" name="Vehicle Item">
+        <div class="h-100 position-relative">
+            <div class="card h-100" t-att-style="not v.website_published and 'opacity:0.6;'">
+                <img t-attf-src="/web/image/website.vehicle/{{v.id}}/image_1024" class="card-img-top" t-att-alt="v.name" loading="lazy"/>
+                <div class="card-body text-muted">
+                    <h5 class="card-title mv-4" t-esc="v.name"/>
+                    <p class="small" t-esc="v.description"/>
+                    <a t-attf-href="/vehicle/#{v.id}" class="text-primary fw-bold" t-att-data-vehicle-id="v.id">
+                        <i class="fa fa-chevron-right me-2"/>READ MORE
+                    </a>
+                </div>
+            </div>
+            <span t-if="not v.website_published" class="bg-danger small py-1 px-2 position-absolute o_not_editable" style="top:0; right:0">unpublished</span>
+        </div>
+
+    </template>
+    <data>
+        <record id="menu_vehicles" model="website.menu">
+            <field name="name">Vehicles</field>
+            <field name="url">/vehicles</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">50</field>
+        </record>
+    </data>
+</odoo>

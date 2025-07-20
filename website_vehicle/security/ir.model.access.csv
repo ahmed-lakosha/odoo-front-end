@@ -1,0 +1,17 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_website_vehicle_manager,website.vehicle.manager,model_website_vehicle,base.group_user,1,1,1,1
+access_website_vehicle_portal,website.vehicle.portal,model_website_vehicle,base.group_portal,1,0,0,0
+access_website_vehicle_public,website.vehicle.public,model_website_vehicle,base.group_public,1,0,0,0
+
+access_vehicle_exterior_image_manager,vehicle.exterior.image.manager,model_vehicle_exterior_image,base.group_user,1,1,1,1
+access_vehicle_exterior_image_portal,vehicle.exterior.image.portal,model_vehicle_exterior_image,base.group_portal,1,0,0,0
+access_vehicle_exterior_image_public,vehicle.exterior.image.public,model_vehicle_exterior_image,base.group_public,1,0,0,0
+
+access_website_vehicle_type_manager,website.vehicle.type.manager,model_website_vehicle_type,base.group_user,1,1,1,1
+access_website_vehicle_type_portal,website.vehicle.type.portal,model_website_vehicle_type,base.group_portal,1,0,0,0
+access_website_vehicle_type_public,website.vehicle.type.public,model_website_vehicle_type,base.group_public,1,0,0,0
+
+access_website_vehicle_tag_manager,website.vehicle.tag.manager,model_website_vehicle_tag,base.group_user,1,1,1,1
+access_website_vehicle_tag_portal,website.vehicle.tag.portal,model_website_vehicle_tag,base.group_portal,1,0,0,0
+access_website_vehicle_tag_public,website.vehicle.tag.public,model_website_vehicle_tag,base.group_public,1,0,0,0

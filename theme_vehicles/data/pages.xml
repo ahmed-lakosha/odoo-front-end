@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<template id="hello_template" name="Hello World">
+			<t t-set="additional_title" t-valuef="Hello World"/>
+			<t t-call="website.layout">
+				<div id="wrap" class="oe_structure">
+					<h1 class="text-primary text-center">Hello World from the theme</h1>
+				</div>
+			</t>
+		</template>
+
+		<record id="hello_page" model="theme.website.page">
+			<field name="view_id" ref="hello_template"/>
+			<field name="is_published" eval="True"/>
+			<field name="url">/theme/hello</field>
+		</record>
+	</data>
+</odoo>

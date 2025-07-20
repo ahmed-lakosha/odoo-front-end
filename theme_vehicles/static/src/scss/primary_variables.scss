@@ -1,0 +1,155 @@
+//------------------------------------------------------------------------------
+// Fonts
+//------------------------------------------------------------------------------
+
+
+//$o-theme-h1-font-size-multiplier: (32 / 16);
+//$o-theme-h2-font-size-multiplier: (28 / 16);
+//$o-theme-h3-font-size-multiplier: (24 / 16);
+//$o-theme-h4-font-size-multiplier: (20 / 16);
+//$o-theme-h5-font-size-multiplier: (16 / 16);
+//$o-theme-h6-font-size-multiplier: (14 / 16);
+//$headings-font-weight: 700;
+//------------------------------------------------------------------------------
+// Presets
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+// Website customizations
+//------------------------------------------------------------------------------
+
+$o-website-values-palettes: (
+        (
+                'color-palettes-name': 'vehicle_colors',
+                'link-underline': 'never',
+                'line-height-base': 1.5,
+                'font-size-base': 1.25rem,
+                'small-font-size': 1rem,
+                'btn-padding-y': 12px,
+                'btn-padding-x': 32px,
+                'btn-border-radius': 12px,
+                'input-padding-y': 12px,
+                'input-padding-x': 12px,
+                'input-border-radius': 12px,
+                'display-1-font-size': 64px,
+                'display-2-font-size': 54px,
+                'display-3-font-size': 40px,
+                'display-4-font-size': 28px,
+                'display-5-font-size': 16px,
+                'display-6-font-size': 12px,
+        ),
+);
+
+//------------------------------------------------------------------------------
+// Colors
+//------------------------------------------------------------------------------
+
+// Fine-tune contextual text colors.
+$o-color-palettes: map-merge($o-color-palettes,
+        (
+                'vehicle_colors': (
+                        'o-color-1': #005b98,
+                        'o-color-2': #41C0F0,
+                        'o-color-3': #f2f2f2,
+                        'o-color-4': #ffffff,
+                        'o-color-5': #373737,
+                ),
+        )
+);
+
+
+// Compatibility
+$o-theme-color-palettes: map-merge($o-theme-color-palettes,
+        (
+                'vehicle_colors': (
+                        'o-color-1': #005b98,
+                        'o-color-2': #41C0F0,
+                        'o-color-3': #f2f2f2,
+                        'o-color-4': #ffffff,
+                        'o-color-5': #373737,
+                ),
+        )
+);
+
+$o-selected-color-palettes-names: append($o-selected-color-palettes-names, 'vehicle_colors');
+
+$o-color-palettes-compatibility-indexes: (
+        1: 'vehicle_colors-1',
+        2: 'vehicle_colors-2',
+        3: 'vehicle_colors-3',
+        4: 'vehicle_colors-4',
+        5: 'vehicle_colors-5',
+        6: 'vehicle_colors-6',
+);
+
+
+//------------------------------------------------------------------------------
+// Fonts
+//------------------------------------------------------------------------------
+
+$o-theme-font-configs: (
+        'Montserrat': (
+                'family': ('Montserrat', sans-serif),
+                'url': 'Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i',
+        ),
+        'Almarai': (
+                'family': ('Almarai', sans-serif),
+                'url': 'Almarai:300,400,700,900',
+        ),
+        'Poppins': (
+                'family': ('Poppins', sans-serif),
+                'url': 'Poppins:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i',
+        ),
+        'Cairo': (
+                'family': ('Cairo', sans-serif),
+                'url': 'Cairo:200,300,400,500,600,700,800,900,1000',
+        ),
+        'Saira': (
+                'family': ('Saira', sans-serif),
+                'url': 'Saira:100,200,300,400,500,600,700,800,900',
+        ),
+        'Shadows Into Light Two': (
+                'family': ('Shadows Into Light Two', cursive),
+                'url': 'Shadows+Into+Light+Two&display=swap',
+        ),
+        'El Messiri': (
+                'family': ('El Messiri', sans-serif),
+                'url': 'El+Messiri:400,500,600,700',
+        ),
+        'PT Serif': (
+                'family': ('PT Serif', sans-serif),
+                'url': 'PT+Serif:400,400i,700',
+        ),
+        'Roboto': (
+                'family': ('Roboto', sans-serif),
+                'url': 'Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i',
+        ),
+        'Open Sans': (
+                'family': ('Open Sans', sans-serif),
+                'url': 'Open+Sans:300,300i,400,400i,700,700i',
+        ),
+        'Source Sans Pro': (
+                'family': ('Source Sans Pro', sans-serif),
+                'url': 'Source+Sans+Pro:300,300i,400,400i,700,700i',
+        ),
+        'Raleway': (
+                'family': ('Raleway', sans-serif),
+                'url': 'Raleway:300,300i,400,400i,700,700i',
+        ),
+        'Noto Serif': (
+                'family': ('Noto Serif', serif),
+                'url': 'Noto+Serif:300,300i,400,400i,700,700i',
+        ),
+        'Arvo': (
+                'family': ('Arvo', Times, serif),
+                'url': 'Arvo:300,300i,400,400i,700,700i',
+        ),
+);
+
+
+//------------------------------------------------------------------------------
+// Shapes
+//------------------------------------------------------------------------------
+
+$o-bg-shapes: change-shape-colors-mapping('web_editor', 'Wavy/21', (2: 1));
+$o-bg-shapes: change-shape-colors-mapping('web_editor', 'Bold/07_001', (2: 3));

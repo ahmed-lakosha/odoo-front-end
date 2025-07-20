@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<template id="snippet_options" inherit_id="website.snippet_options" name="Blog snippet options">
+		<xpath expr="." position="inside">
+			<!-- Disaster Alert page  -->
+			<div data-selector="#o_vehicle_details_main" data-page-options="true"
+					groups="website.group_website_designer" data-no-check="true" string="Blog Page">
+				<we-checkbox string="Share Links"
+						data-customize-website-views="website_vehicle.opt_website_vehicle_share_links_display"
+						data-no-preview="true"
+						data-reload="/"/>
+				<we-row string="Bottom" class="o_we_full_row">
+					<we-button string="Breadcrumb"
+							data-customize-website-views="website_vehicle.opt_website_vehicle_breadcrumb"
+							data-no-preview="true"
+							data-reload="/"/>
+					<we-button string="Next Vehicle"
+							data-customize-website-views="website_vehicle.opt_website_vehicle_read_next"
+							data-no-preview="true"
+							data-reload="/"/>
+				</we-row>
+			</div>
+		</xpath>
+
+	</template>
+</odoo>
