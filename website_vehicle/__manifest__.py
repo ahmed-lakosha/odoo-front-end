@@ -26,9 +26,6 @@
         'static/description/icon.png',
     ],
     'assets': {
-        'website.assets_editor': [
-            'website_vehicle/static/src/js/systray_items/*.js',
-        ],
         'web.assets_frontend': [
             'website_vehicle/static/src/js/sharing_links.js',
             'website_vehicle/static/src/scss/style.scss',
